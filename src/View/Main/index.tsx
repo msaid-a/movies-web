@@ -63,17 +63,19 @@ const Main = () => {
                     ))}
                 </Carousel>
             </Container>
-            <Container className="mt-6 p-4 pl-24">
-                <Text.Heading h={3} color="white">Popular</Text.Heading>
-                <Carousel responsive={responsiveCard}>
-                    {upCooming && upCooming.results.map((val: result) => (
-                    <Card headImage={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}>                       
-                        <Text.Heading h={6} color="white" className="mt-24">
-                        {val.title}
-                        </Text.Heading>
-                    </Card>
-                    ))}
-                </Carousel>
+            <Container className="mt-6 p-4 carousel-custom">
+                <Text.Heading className="pl-5" h={3} color="white">Up Coming</Text.Heading>
+                <Container style={{height: 350}}>
+                    <Carousel responsive={responsiveCard} className=" pl-5 h-full">
+                        {upCooming && upCooming.results.map((val: result) => (
+                        <Card headImage={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}>                       
+                            <Text.Heading h={6} color="white" className="mt-24">
+                            {val.title}
+                            </Text.Heading>
+                        </Card>
+                        ))}
+                    </Carousel>
+                </Container>
             </Container>
         </Container>
     )

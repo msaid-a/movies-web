@@ -1,5 +1,5 @@
 import React, { CSSProperties, ReactNode } from 'react'
-import './style.css'
+import './style.scss'
 import classnames from 'classnames'
 
 interface props {

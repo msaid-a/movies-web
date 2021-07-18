@@ -1,0 +1,36 @@
+
+.container-custom {
+  color: #fff;
+  background: rgb(19, 28, 63);
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  /* height: 100%; */
+  width: 100%;
+}
+
+.header {
+    background-color:rgb(17, 31, 85);
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.search {
+    height: 35px;
+    margin-right: 50px;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+@media (min-width: 446px) {
+    .search {
+        width: 250px;
+    }
+}
+
+@media (max-width: 445px) {
+    .search {
+        width: 300px;
+    }
+}

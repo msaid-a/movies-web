@@ -1,0 +1,19 @@
+@import './tailwind.scss';
+@import '../../../node_modules/slick-carousel/slick/slick.scss';
+@import "../../../node_modules/slick-carousel/slick/slick-theme.css";
+.tittle-carousel {
+    position: absolute;
+    right: 15%;
+    bottom: 20px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px #000;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+}
+

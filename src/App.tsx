@@ -1,25 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import './static/styles/index.scss'
+import { ROUTE_PATH } from "./Route/index";
+import {AsyncPage, Layout} from './Component'
+import "react-multi-carousel/lib/styles.css";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+
+const { HOME, DETAIL } = ROUTE_PATH;
+
+const ROUTES = [
+  { path: HOME, exact: true, page: "Main" },
+  { path: DETAIL, exact: true, page: "Detail" },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout>
+        <Switch>
+          {ROUTES.map((route, i) => (
+            <Route
+              key={i}
+              path={route.path}
+              exact={route.exact}
+              render={() => <AsyncPage page={route.page}  />}
+            />
+          ))}
+          <Route component={() => <p>Not Found</p>} />
+        </Switch>
+      </Layout>
+  </Router>
   );
 }
 

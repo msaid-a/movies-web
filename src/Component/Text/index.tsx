@@ -31,6 +31,28 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
   )
 }
 
+interface SpanProps extends TextBaseProps {
+
+}
+
+const Span: React.FC<SpanProps> = (props) => {
+  const className = classNames(
+    props.className,
+    { 'cursor-pointer': props.onClick },
+    props.color === 'white' ? 'text-white' : 'text-black'
+  )
+
+  const handleOnClick = () => {
+    if (props.onClick) {
+      props.onClick()
+    }
+  }
+
+  return (
+    <span className={className} style={props.style} onClick={handleOnClick}>{props.children}</span>
+  )
+}
+
 interface HeadingProps extends TextBaseProps {
   h: 1 | 2 | 3 | 4 | 5 | 6
 }
@@ -93,7 +115,8 @@ const Link: React.FC<LinkProps> = (props) => {
 const Text = {
   Paragraph,
   Heading,
-  Link
+  Link,
+  Span
 }
 
 export default Text

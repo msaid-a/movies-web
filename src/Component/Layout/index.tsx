@@ -1,36 +1,32 @@
 import React, { ReactNode } from "react";
 import "./style.css";
-import { useHistory } from "react-router-dom";
-
+import Logo from "../../static/images/logo.png";
 interface props {
   children: ReactNode;
 }
 
 const Layout: React.FC<props> = (props) => {
-  const history = useHistory();
-
-  const searchData = (e: any) => {
-    if (e.keyCode === 13) {
-      if(!e.target.value) {
-        history.push("/")
-      }else {
-        history.push(`/search?q=${e.target.value}`);
-      }
-    }
-  };
   return (
-    <div className="container-custom">
-    <div className="header">
-        <div className="flex justify-end pt-3">
-            <input
-            onKeyUp={searchData}
-            type="search"
-            className="mx-2.5 block text-gray-700 text-sm font-bold mb-2 border search"
-            placeholder="Search"
-            />
-        </div>
-    </div>
+    <div className="container-custom pt-4">
       {props.children}
+      <div className="footer-custom mt-40">
+        <div>
+          <footer className="footer text-white relative pt-1 w-screen">
+            <div className="container mx-auto px-6">
+              <div className="flex items-center flex-no-shrink mr-6"></div>
+            </div>
+            <div className="container mx-auto px-6">
+              <div className=" border-t-2 border-gray-300 flex flex-col items-center">
+                <div className="sm:w-2/3 text-center py-6">
+                  <p className="text-sm font-bold mb-2">
+                    © 2021 by Muhammad Said Arrafi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
     </div>
   );
 };

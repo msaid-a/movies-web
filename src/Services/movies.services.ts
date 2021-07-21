@@ -12,11 +12,31 @@ export const useGetNowPlaying = () => {
 }
 
 export const useGetUpComming = () => {
-    const {data, error, isValidating} = useSWR( 'top-rate', async () =>  {
+    const {data, error, isValidating} = useSWR( 'up-comming', async () =>  {
         const respone = await api.moviesApi.getUpComming()
         return respone
       },
       {revalidateOnFocus : false}
     )
     return {data, error, isValidating}
+}
+
+export const useGetPopular = () => {
+  const {data, error, isValidating} = useSWR( 'popular-movies', async () =>  {
+      const respone = await api.moviesApi.getPopular()
+      return respone
+    },
+    {revalidateOnFocus : false}
+  )
+  return {data, error, isValidating}
+}
+
+export const useGetTopRated = () => {
+  const {data, error, isValidating} = useSWR( 'top-rated', async () =>  {
+      const respone = await api.moviesApi.getTopRated()
+      return respone
+    },
+    {revalidateOnFocus : false}
+  )
+  return {data, error, isValidating}
 }

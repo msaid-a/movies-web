@@ -5,6 +5,6 @@ import Text from './Text'
 import Layout from './Layout'
 import Container from './Container'
 import Card from './Card'
-// import NoData from './NoData'
+import Break from './Break'
 
-export {Loading, ErrorBoundary, AsyncPage, Text,  Container, Layout, Card}
+export {Loading, ErrorBoundary, AsyncPage, Text,  Container, Layout, Card, Break}

@@ -1,6 +1,6 @@
 import React from 'react'
 import {useGetNowPlaying, useGetUpComming, useGetPopular, useGetTopRated} from '../../Services'
-import {Container, Text} from '../../Component'
+import {Container, Text, Image} from '../../Component'
 import {result} from '../../model'
 import Carousel from 'react-multi-carousel'
 import MovieList from '../Reusable/MovieList'
@@ -33,7 +33,7 @@ const Main = () => {
                 >
                     {nowPlaying && nowPlaying.results.map((val : result) => (
                     <Container >
-                        <img style={{borderRadius: 10}} className="mx-auto" src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`} />
+                        <Image style={{borderRadius: 10}} className="mx-auto" src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`} />
                         <Text.Heading h={4} className="tittle-carousel ">{val.title}</Text.Heading>
                     </Container>
                     ))}

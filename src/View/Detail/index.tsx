@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Text, Card, Break } from "../../Component";
+import { Container, Text, Card, Break, Flex } from "../../Component";
 import {
   useGetDetail,
   useGetCreadits,
@@ -108,32 +108,32 @@ const Detail: React.FC = (props) => {
         </Text.Heading>
         <Text.Paragraph color="white">{detailMovies?.overview}</Text.Paragraph>
       </Container>
-      <Container className="flex md: flex-col lg:flex-row px-14 lg:px-48 mt-16  justify-between">
-        <Container>
+      <Flex.Row colPerRow="4" className="justify-between lg:px-48">
+        <Flex.Col>
           <Text.Heading h={3} color="white" className="md: mt-12">
             RELEASE DATE
           </Text.Heading>
           <Text.Heading h={4} style={{ color: "orange" }}>
             {detailMovies?.release_date}
           </Text.Heading>
-        </Container>
-        <Container>
+        </Flex.Col>
+        <Flex.Col>
           <Text.Heading h={3} color="white" className="md: mt-12">
             RUN TIME
           </Text.Heading>
           <Text.Heading h={4} style={{ color: "orange" }}>
             {detailMovies?.runtime}
           </Text.Heading>
-        </Container>
-        <Container>
+        </Flex.Col>
+        <Flex.Col>
           <Text.Heading h={3} color="white" className="md: mt-12">
             BUDGET
           </Text.Heading>
           <Text.Heading h={4} style={{ color: "orange" }}>
             {detailMovies?.budget}
           </Text.Heading>
-        </Container>
-        <Container>
+        </Flex.Col>
+        <Flex.Col>
           <Text.Heading h={3} color="white" className="md: mt-12">
             HOME PAGE
           </Text.Heading>
@@ -142,8 +142,8 @@ const Detail: React.FC = (props) => {
               {detailMovies?.homepage}
             </a>
           </Text.Heading>
-        </Container>
-      </Container>
+        </Flex.Col>
+      </Flex.Row>
       <Container className="px-14 lg:px-48 mt-16">
         <Text.Heading h={3} color="white">
           Cast

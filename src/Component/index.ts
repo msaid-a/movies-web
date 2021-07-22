@@ -6,5 +6,6 @@ import Layout from './Layout'
 import Container from './Container'
 import Card from './Card'
 import Break from './Break'
-
-export {Loading, ErrorBoundary, AsyncPage, Text,  Container, Layout, Card, Break}
+import Image from './Image'
+import Flex from './Flex'
+export {Loading, ErrorBoundary, AsyncPage, Text,  Container, Layout, Card, Break, Image, Flex}

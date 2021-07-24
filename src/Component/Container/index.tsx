@@ -15,11 +15,10 @@ const Container:React.FC<props> = (props) => {
 const containerClass = classNames('container', props.className)
 
     return (
-        <div>
+        
             <div style={props.style} className={containerClass}>
                 {props.loading ? <Loading/> : props.children}
             </div>
-        </div>
     )
 }
 

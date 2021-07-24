@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import './static/styles/index.scss'
+import './static/styles/tailwind.scss'
+
 import { ROUTE_PATH } from "./Route/index";
 import {AsyncPage, Layout} from './Component'
 import "react-multi-carousel/lib/styles.css";

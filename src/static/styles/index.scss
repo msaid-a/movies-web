@@ -1,4 +1,4 @@
-@import './tailwind.scss';
+// @import './tailwind.scss';
 
 .tittle-carousel {
     position: absolute;
@@ -15,4 +15,45 @@
     background: rgba(0, 0, 0, 0.5);
     border-radius: 2px;
 }
+
+
+.carousel-image {
+    background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,1));
+
+}
+
+.title-container {
+    background:  rgb(11, 16, 36);
+}
+
+
+
+@media only screen and (min-width: 1369px) {
+    .img-gradient {
+        height: inherit;
+        // position: absolute;
+        // top: 0;
+        background-image: linear-gradient(to right,  #0b1024, rgba(0,0,0,0));
+        position: absolute;
+        top: 0;
+        left: 40.5%;
+        height: 100%;
+        width: 200px;
+    }  
+
+}
+
+@media only screen and (max-width: 1368px) {
+    .img-gradient {
+        height: inherit;
+        // position: absolute;
+        // top: 0;
+        background-image: linear-gradient(to right,  #0b1024, rgba(0,0,0,0));
+        position: absolute;
+        top: 0;
+        left: 40.5%;
+        height: 100%;
+        width: 200px;
+    } 
+ }
 

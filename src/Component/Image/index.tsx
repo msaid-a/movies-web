@@ -19,13 +19,12 @@ const Image: React.FC<IImageProps> = (props) => {
   }
 
   const className = classnames(
-    'app-image',
     props.className
   )
   const style: React.CSSProperties = {
     ...props.style,
-    height: props.height || 'auto',
-    width: props.width || 'auto',
+    // height: props.height || 'auto',
+    // width: props.width || 'auto',
     cursor: props.onClick ? 'pointer' : 'default'
   }
   return (

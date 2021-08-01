@@ -1,20 +1,39 @@
-import React from "react";
-import { Container, Text, Card, Break, Flex } from "../../Component";
+import React, { useState } from "react";
+import { Container, Text, Card, Break, Flex, Image } from "../../Component";
 import {
   useGetDetail,
   useGetCreadits,
-  useGetSimmilarMovies
+  useGetSimmilarMovies,
+  useGetVideos,
 } from "../../Services";
 import { useParams } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import { genres, Cast } from "../../model";
 import MovieList from "../Reusable/MovieList";
+import Modal from "react-modal";
+import ReactPlayer from "react-player";
+
 interface parms {
   id: string;
 }
 
 const Detail: React.FC = (props) => {
+  const [modal, setModal] = useState<boolean>(false);
   const params: parms = useParams();
+
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width:'50%',
+      height: 450
+    },
+  };
+
   const responsive = {
     mobile: {
       breakpoint: { max: 4000, min: 0 },
@@ -70,20 +89,31 @@ const Detail: React.FC = (props) => {
     isValidating: loadingSimmilar,
   } = useGetSimmilarMovies(params.id);
 
+  const {
+    data: videoMovie,
+    error: errVideo,
+    isValidating: loadingVideo,
+  } = useGetVideos(params.id);
 
   return (
-    <Container loading={loadingDetail || loadingCredits || loadingSimmilar}>
+    <Container loading={loadingDetail || loadingCredits || loadingSimmilar || loadingVideo}>
       <Container className=" w-10/12 mx-auto">
         <Carousel responsive={responsive} showDots={false} arrows={false}>
           <Container>
-            <img
+            <Image
               style={{ borderRadius: 5 }}
               className="mx-auto"
               src={`https://image.tmdb.org/t/p/original/${detailMovies?.backdrop_path}`}
+              onClick={() => setModal(true)}
             />
-            <Text.Heading h={4} className="tittle-carousel ">
-              {detailMovies?.title}
-            </Text.Heading>
+            <Container className="tittle-carousel " >
+              <Text.Heading h={4} color="white">
+                {detailMovies?.title}
+              </Text.Heading>
+              <Text.Span className=" text-gray-300">
+                (Klik Image to See Trailer)
+              </Text.Span>
+            </Container>
           </Container>
         </Carousel>
       </Container>
@@ -177,10 +207,30 @@ const Detail: React.FC = (props) => {
         </Container>
       </Container>
       <Container className=" px-14 lg:px-48 mt-16">
-          <Text.Heading h={3} color="white">Simmilary Movies</Text.Heading>
-          <Break height={20} />
-            <MovieList data={simmilarMovies} detail={true} />
+        <Text.Heading h={3} color="white">
+          Simmilary Movies
+        </Text.Heading>
+        <Break height={20} />
+        <MovieList data={simmilarMovies} detail={true} />
       </Container>
+      <Modal
+        isOpen={modal}
+        onRequestClose={() => setModal(false)}
+        style={customStyles}
+        overlayClassName="Overlay"
+
+      >
+        <Container className="flex justify-between align-middle">
+          <Text.Span>Trailer</Text.Span>
+          <Text.Span onClick={() => setModal(false)} style={{fontSize: 20}}>X</Text.Span>
+        </Container>
+        <ReactPlayer 
+          // playing
+          width="100%"
+          style={{marginTop: 10, marginBottom: 'auto'}} 
+          url={`https://www.youtube.com/watch?v=${videoMovie?.results[0].key}`}
+          />
+      </Modal>
     </Container>
   );
 };

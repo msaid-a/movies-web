@@ -10,6 +10,7 @@ import MediaQuery from 'react-responsive'
 import { result } from "../../model";
 import Carousel from "react-multi-carousel";
 import MovieList from "../Reusable/MovieList";
+import {useHistory} from 'react-router-dom'
 
 const Main = () => {
   const {data : nowPlaying, error, isValidating : loadingNowPlaying} = useGetNowPlaying()
@@ -21,6 +22,7 @@ const Main = () => {
 
   const loading = loadingNowPlaying || loadingUpCooming || loadingPopular || loadingTopRated
 //   const loading = loadingNowPlaying;
+const history = useHistory()
   const responsive = {
     mobile: {
       breakpoint: { max: 4000, min: 0 },
@@ -45,7 +47,7 @@ const Main = () => {
             <>
             <MediaQuery minDeviceWidth={1281}>
                 <Flex.Row className="flex w-screen justify-around px-8">
-                    <Flex.Col className="title-container pt-56 pl-16 pr-8" width={"40%"}>
+                    <Flex.Col className="title-container 2xl:pt-56 xl:pt-14 pl-16 pr-8" width={"40%"}>
                         <Text.Heading h={1} color="white" className="">
                             {val.title}
                         </Text.Heading>
@@ -56,14 +58,16 @@ const Main = () => {
                             {val.overview}
                         </Text.Paragraph>
                     </Flex.Col>
-                    <Flex.Col className="bg-red img-gradient" width={"32%"}>
+                    <Flex.Col className="img-gradient" width={"32%"}>
 
                     </Flex.Col>
-                    <Flex.Col className="bg-white " width={"60%"}>
+                    <Flex.Col width={"60%"}>
                          <Image
-                  style={{ width: "100%" }}
+                  style={{ width: "100%"}}
                   className=" "
                   src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}
+                  onClick={() => history.push(`/detail/${val.id}`)}
+
                 />
                     </Flex.Col>
                 </Flex.Row>

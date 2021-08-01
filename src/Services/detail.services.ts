@@ -30,3 +30,13 @@ export const useGetSimmilarMovies = (id: string) => {
     )
     return {data, error, isValidating}
 }
+
+export const useGetVideos = (id: string) => {
+  const {data, error, isValidating} = useSWR( 'videos-movies', async () =>  {
+      const respone = await api.detailMovies.getVideo(id)
+      return respone
+    },
+    {revalidateOnFocus : false}
+  )
+  return {data, error, isValidating}
+}

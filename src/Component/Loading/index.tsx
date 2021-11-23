@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-const index: React.FC = () => {
+const Loading: React.FC = () => {
     return (
         <div className="loading">
             <div className="loader mx-auto"></div>
@@ -9,4 +9,4 @@ const index: React.FC = () => {
     )
 }
 
-export default index
+export default Loading

@@ -6,23 +6,39 @@ import {
   useGetTopRated,
 } from "../../Services";
 import { Container, Text, Image, Flex } from "../../Component";
-import MediaQuery from 'react-responsive'
+import MediaQuery from "react-responsive";
 import { result } from "../../model";
 import Carousel from "react-multi-carousel";
 import MovieList from "../Reusable/MovieList";
-import {useHistory} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 const Main = () => {
-  const {data : nowPlaying, error, isValidating : loadingNowPlaying} = useGetNowPlaying()
-  const {data : upCooming, error : errTopRate, isValidating : loadingUpCooming} = useGetUpComming()
-  const {data : popular, error : errPopular, isValidating : loadingPopular} = useGetPopular()
-  const {data : topRated, error : errTopRatd, isValidating : loadingTopRated} = useGetTopRated()
+  const {
+    data: nowPlaying,
+    error,
+    isValidating: loadingNowPlaying,
+    mutate: mutateNowPlaying
+  } = useGetNowPlaying();
+  const {
+    data: upCooming,
+    error: errTopRate,
+    isValidating: loadingUpCooming,
+  } = useGetUpComming();
+  const {
+    data: popular,
+    error: errPopular,
+    isValidating: loadingPopular,
+  } = useGetPopular();
+  const {
+    data: topRated,
+    error: errTopRatd,
+    isValidating: loadingTopRated,
+  } = useGetTopRated();
 
-  
-
-  const loading = loadingNowPlaying || loadingUpCooming || loadingPopular || loadingTopRated
-//   const loading = loadingNowPlaying;
-const history = useHistory()
+  const loading =
+    loadingNowPlaying || loadingUpCooming || loadingPopular || loadingTopRated;
+  //   const loading = loadingNowPlaying;
+  const history = useHistory();
   const responsive = {
     mobile: {
       breakpoint: { max: 4000, min: 0 },
@@ -32,8 +48,8 @@ const history = useHistory()
   };
 
   return (
-    <Container loading={loading}>
-      <Container className=" w-100 lg:w-full mx-auto">
+    <Container loading={loading} className="mx-auto">
+      <Container className=" w-100 lg:w-full ">
         <Carousel
           responsive={responsive}
           infinite={true}
@@ -44,49 +60,51 @@ const history = useHistory()
         >
           {nowPlaying &&
             nowPlaying.results.map((val: result) => (
-            <>
-            <MediaQuery minDeviceWidth={1281}>
-                <Flex.Row className="flex w-screen justify-around px-8">
-                    <Flex.Col className="title-container 2xl:pt-56 xl:pt-14 pl-16 pr-8" width={"40%"}>
-                        <Text.Heading h={1} color="white" className="">
-                            {val.title}
-                        </Text.Heading>
-                        <Text.Heading h={3} color="white" className="">
-                            {val.release_date}
-                        </Text.Heading>
-                        <Text.Paragraph className=" opacity-70" color="white">
-                            {val.overview}
-                        </Text.Paragraph>
+              <>
+                <MediaQuery minDeviceWidth={1281}>
+                  <Flex.Row className="flex w-screen justify-around px-8">
+                    <Flex.Col
+                      className="title-container 2xl:pt-56 xl:pt-14 pl-16 pr-8"
+                      width={"40%"}
+                    >
+                      <Text.Heading h={1} color="white" className="">
+                        {val.title}
+                      </Text.Heading>
+                      <Text.Heading h={3} color="white" className="">
+                        {val.release_date}
+                      </Text.Heading>
+                      <Text.Paragraph className=" opacity-70" color="white">
+                        {val.overview}
+                      </Text.Paragraph>
                     </Flex.Col>
-                    <Flex.Col className="img-gradient" width={"32%"}>
-
-                    </Flex.Col>
+                    <Flex.Col className="img-gradient" width={"35%"}></Flex.Col>
                     <Flex.Col width={"60%"}>
-                         <Image
-                  style={{ width: "100%"}}
-                  className=" "
-                  src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}
-                  onClick={() => history.push(`/detail/${val.id}`)}
-
-                />
+                      <Image
+                        style={{ width: "100%" }}
+                        className=" "
+                        src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}
+                        onClick={() => history.push(`/detail/${val.id}`)}
+                      />
                     </Flex.Col>
-                </Flex.Row>
-            </MediaQuery>
-            <MediaQuery maxDeviceWidth={1280}>
-              <Container>
-                
-
-                <Image
-                  style={{ borderRadius: 10 }}
-                  className="mx-auto lg:w-3/4 w-full"
-                  src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}
-                /> 
-                 <Text.Heading h={4} color="white" className="tittle-carousel ">
-                  {val.title}
-                </Text.Heading>
-               </Container>
-            </MediaQuery>
-            </>
+                  </Flex.Row>
+                </MediaQuery>
+                <MediaQuery maxDeviceWidth={1280}>
+                  <Container>
+                    <Image
+                      style={{ borderRadius: 10 }}
+                      className="mx-auto lg:w-3/4 w-full"
+                      src={`https://image.tmdb.org/t/p/original/${val.backdrop_path}`}
+                    />
+                    <Text.Heading
+                      h={4}
+                      color="white"
+                      className="tittle-carousel "
+                    >
+                      {val.title}
+                    </Text.Heading>
+                  </Container>
+                </MediaQuery>
+              </>
             ))}
         </Carousel>
       </Container>

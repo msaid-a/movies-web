@@ -1,14 +1,15 @@
 import api from '../api'
 import useSWR from "swr";
 
+
 export const useGetNowPlaying = () => {
-    const {data, error, isValidating} = useSWR( 'now-playing', async () =>  {
+    const {data, error, isValidating, mutate} = useSWR( 'now-playing', async () =>  {
         const respone = await api.moviesApi.getNowPlaying()
         return respone
       },
       {revalidateOnFocus : false}
     )
-    return {data, error, isValidating}
+    return {data, error, isValidating, mutate}
 }
 
 export const useGetUpComming = () => {
